@@ -3,11 +3,16 @@
 <head>
   <title>WeddingPlan</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<% if user_signed_in? %>
+  <%= link_to current_user.email, user_path(current_user) %>
+<% else %>
+  <%= link_to "Sign up", new_user_registration_path %>
+  <%= link_to "Login", new_user_session_path %>
+<% end %>
 <%= yield %>
 
 </body>
